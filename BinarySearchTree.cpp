@@ -135,6 +135,58 @@ public:
 				rec_insert(new_node, root -> right);
 		}
 	}
+	void remove(T data){
+		auto itr = search_node(data, root);
+		if(itr == nullptr)
+			return;
+		if(itr == root && root -> left == nullptr && root -> right ==nullptr){
+			delete root;
+			root = nullptr;
+		}
+		else 
+			remove(itr);
+
+	}
+	void remove(Node<T>* root){
+		if(root -> left == nullptr && root -> right == nullptr){
+			if(root == root -> parent -> right)
+				root -> parent -> right = nullptr;
+			else
+				root -> parent -> left = nullptr;
+			delete root;
+			return;
+		}
+		if(root->left == nullptr){
+			auto new_root = const_cast<Node<T>*>(min_node(root -> right));
+			root->key = new_root -> key;
+			if(new_root -> parent -> right == new_root)
+				new_root -> parent -> right = nullptr;
+			else
+				new_root -> parent -> left = nullptr;
+			new_root->parent = nullptr;
+			delete new_root;
+			return;
+		}
+		else if(root->right == nullptr){
+			auto new_root = const_cast<Node<T>*>(max_node(root -> left));
+			root->key = new_root-> key;
+			if(new_root -> parent -> right == new_root)
+				new_root -> parent -> right = nullptr;
+			else
+				new_root -> parent -> left = nullptr;
+			delete new_root;
+			return;
+		}
+		auto new_root = const_cast<Node<T>*>(max_node(root -> left));
+			root->key = new_root-> key;
+			if(new_root -> parent -> right == new_root)
+				new_root -> parent -> right = nullptr;
+			else
+				new_root -> parent -> left = nullptr;
+			delete new_root;
+			return;
+	}
+
 	void inordertraversal(){
 		inordertraversal(root);
 	}
@@ -169,6 +221,29 @@ public:
 	inorderiterator<T> end(){
 		return inorderiterator<T>(nullptr);
 	}
+	bool search(T data){
+		return search(data, root);
+	}
+	bool search(T data, Node<T>* root){
+		if(root == nullptr)
+			return false;
+		if(root -> key == data)
+			return true;
+		if(root -> key > data)
+			return search(data, root -> left);
+		else 
+			return search(data, root -> right);
+	}
+	static Node<T>* search_node(T data, Node<T>* root){
+		if(root == nullptr)
+			return nullptr;
+		if(root -> key == data)
+			return root;
+		if(root -> key > data)
+			return search_node(data, root -> left);
+		else 
+			return search_node(data, root -> right);
+	}
 };
 int main(){
 	BinarySearchTree<int> bst;
@@ -178,9 +253,11 @@ int main(){
 	bst.insert(5);
 	bst.insert(4);
 	bst.inordertraversal();
+	bst.remove(3);  
 	std::cout <<"MAX : " << bst.max() << std::endl;
 	std::cout <<"MIN : " << bst.min() << std::endl;
-	for(auto i: bst){
+	for(auto i: bst)
 		std::cout << i << " ";
-	}
+	std::cout << bst.search(6) << std::endl;
+	std::cout << bst.search(3) << std::endl;
 };
