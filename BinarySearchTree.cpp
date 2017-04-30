@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <queue>
 
 template <typename T> class BinarySearchTree{
 	template <typename N> class Node{
@@ -244,20 +245,92 @@ public:
 		else 
 			return search_node(data, root -> right);
 	}
+	void levelordertraversal(){
+		auto curr = root;
+		if(curr == nullptr)
+			return;
+		std::queue<Node<T>*> q;
+		q.push(curr);
+		while(!q.empty()){
+			curr = q.front();
+			q.pop();
+			std::cout << curr -> key<< " ";
+			if(curr -> left != nullptr)
+				q.push(curr -> left);
+			if(curr -> right != nullptr)
+				q.push(curr -> right);
+		}
+	}
+	void levelorderzigzagtraversal(){
+        auto curr = root;
+        if(curr == nullptr)
+            return;
+        std::queue<Node<T>*> q;
+        std::stack<Node<T>*> s;
+        q.push(curr);
+        q.push(nullptr);
+        bool flip = false;
+        while(!q.empty()){
+            curr = q.front();
+            q.pop();
+            if(curr == nullptr){
+                flip = !flip;
+                if(!q.empty()){
+                    q.push(nullptr);
+                }
+                continue;
+            }
+            if(flip){
+                auto rev = s.top();
+                s.pop();
+                std::cout << rev -> key<< " ";
+                if(curr -> left != nullptr)
+                    q.push(curr -> left);
+                if(curr -> right != nullptr)
+                    q.push(curr -> right);
+            }
+            else{
+                std::cout << curr -> key<< " ";
+                if(curr -> left != nullptr){
+                    q.push(curr -> left);
+                    s.push(curr -> left);
+                }
+                if(curr -> right != nullptr){
+                    q.push(curr -> right);
+                    s.push(curr -> right);
+                }
+            }
+        }
+    }
 };
 int main(){
 	BinarySearchTree<int> bst;
 	bst.insert(2);
 	bst.insert(1);
-	bst.insert(3);
-	bst.insert(5);
 	bst.insert(4);
+	bst.insert(5);
+	bst.insert(3);
 	bst.inordertraversal();
+	std::cout << std::endl;
+	bst.levelordertraversal();
+	std::cout << std::endl;
 	bst.remove(3);  
 	std::cout <<"MAX : " << bst.max() << std::endl;
 	std::cout <<"MIN : " << bst.min() << std::endl;
 	for(auto i: bst)
 		std::cout << i << " ";
+	std::cout << std::endl;
 	std::cout << bst.search(6) << std::endl;
-	std::cout << bst.search(3) << std::endl;
+	std::cout << bst.search(5) << std::endl;
+	bst.insert(3);
+	bst.insert(7);
+	bst.insert(6);
+	bst.insert(8);
+	bst.insert(-2);
+	bst.insert(-1);
+	bst.insert(-3);
+	bst.levelordertraversal();
+	std::cout << std::endl;
+	bst.levelorderzigzagtraversal();
+
 };
