@@ -302,8 +302,45 @@ public:
             }
         }
     }
+    int height(){
+    	return height(root);
+    }
+    int height(Node<T>* node){
+    	if(node == nullptr)
+    		return 0;
+    	return std::max(height(node-> left), height(node-> right)) + 1;
+    }
+    int diameter(){
+    	return diameter(root);
+    }
+    int diameter(Node<T>* node){
+    	if(node == nullptr)
+    		return 0;
+    	auto ldia = diameter(node -> left);
+    	auto rdia = diameter(node -> right);
+    	return std::max((height(node->left) + height(node -> right) + 1),std::max(ldia,rdia));
+    }
+    const std::vector<T> allpaths(){
+    	std::vector<T> path;
+    	return allpaths(root, path);
+    }
+    const std::vector<T> allpaths(Node<T>* node, std::vector<T> vec){
+    	if(node == nullptr)
+    		return std::move(vec) ;
+    	vec.push_back(node->key);
+    	if(node->left == nullptr && node -> right == nullptr){
+    		for(auto i : vec)
+    			std::cout << i << " ";
+    		std::cout << std::endl;
+    		return std::move(vec);
+    	}
+    	auto left_path = allpaths(node -> left, vec);
+    	auto right_path = allpaths(node -> right, vec);
+    	return (left_path.size() > right_path.size())?std::move(left_path) : std::move(right_path);
+    }
+
 };
-int main(){
+int main(){ 
 	BinarySearchTree<int> bst;
 	bst.insert(2);
 	bst.insert(1);
@@ -332,5 +369,13 @@ int main(){
 	bst.levelordertraversal();
 	std::cout << std::endl;
 	bst.levelorderzigzagtraversal();
+	std::cout<<"height of tree : " << bst.height()<<std::endl;
+	std::cout <<"diameter of tree : "<< bst.diameter() << std::endl;
+	auto longest_path = bst.allpaths();
+	std::cout << "longest path : ";
+	for(auto i : longest_path){
+		std::cout << i << " ";
+	}
+	std::cout << std::endl;
 
 };
