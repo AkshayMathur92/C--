@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 template <typename T>
 class MinHeap{
@@ -38,8 +39,14 @@ public:
         percolateup(v.size() - 1);
         
     }
-    void deleteKey(){
-        
+    void deleteKey(T key){
+    	auto itr = std::find(v.begin(), v.end(), key);
+    	if(itr == v.end())
+    		return;
+    	auto pos = itr - v.begin();
+    	std::swap(v[pos], v[v.size() - 1]);
+    	v.pop_back();
+    	percolatedown(pos);        
     }
     T getMin(){
         return v.front();
@@ -69,6 +76,8 @@ int main(){
     mh.extractMin();
     std::cout << mh.getMin() << std::endl;
     mh.insertKey(14);
+    std::cout << mh.getMin() << std::endl;
+    mh.deleteKey(7);
     std::cout << mh.getMin() << std::endl;
     
 }
