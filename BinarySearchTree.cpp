@@ -338,6 +338,19 @@ public:
     	auto right_path = allpaths(node -> right, vec);
     	return (left_path.size() > right_path.size())?std::move(left_path) : std::move(right_path);
     }
+    bool isBalanced(){
+    	return isBalanced(root);
+    }
+    bool isBalanced(Node<T>* node){
+    	if(node == nullptr)
+    		return true;
+
+    	int lh = height(node -> left); 
+    	int rh = height(node -> right);
+    	if(isBalanced(node -> left) && isBalanced(node -> right) && abs(lh - rh) <= 1)
+    		return true;
+    	return false;
+    }
 
 };
 int main(){ 
@@ -377,5 +390,6 @@ int main(){
 		std::cout << i << " ";
 	}
 	std::cout << std::endl;
+	std::cout << "Is Balanced : " << bst.isBalanced() << std::endl;
 
 };
