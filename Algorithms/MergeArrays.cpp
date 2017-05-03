@@ -3,6 +3,10 @@
 #include <numeric>
 
 template <typename T>
+T  merge_arrays(T &v1){
+	return v1;
+}
+template <typename T>
 T  merge_arrays(T &v1 , T &v2){
     T  res;
     auto iv1 = v1.begin();
@@ -35,7 +39,7 @@ int main(){
     std::vector<int> v3 = {3,5,8};
     std::vector<int> v4 = {10};
     std::vector<int> v5 = {11};
-    for(auto i : merge_arrays(v1,v2,v3,v4)){
+    for(auto i : merge_arrays(v1,v2,v3,v4,v5)){
     	std::cout << i << " ";
     }
 }
