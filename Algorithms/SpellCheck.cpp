@@ -1,0 +1,75 @@
+#include <string>
+#include <map>
+#include <utility>
+#include <iostream>
+#include <fstream>
+#include <regex>
+
+std::map<std::string, unsigned long int> WORDS;
+
+int edit_distance(std::string s1, std::string s2){
+    std::vector <std::vector<int> > v(s1.length() + 1, std::vector<int>(s2.length() + 1));
+    for(int i = 0 ; i <= s1.length(); i ++){
+        for(int j = 0; j <= s2.length(); j++){
+            if(i == 0)
+                v[i][j] = j;
+            else if(j == 0)
+                v[i][j] = i;
+            else if(s1[i - 1] == s2[j - 1])
+                v[i][j] = v[i-1][j-1];
+            else
+                v[i][j] = std::min(v[i-1][j-1],std::min(v[i-1][j], v[i][j-1])) + 1;
+        }
+    }
+    return v[s1.length()][s2.length()];
+}
+
+std::string distance(std::string &s, int x){
+    std::vector<std::pair<std::string, unsigned long int> > suggestions;
+    copy_if(WORDS.begin(), WORDS.end(), back_inserter(suggestions), [&](const std::pair<std::string, unsigned long int> &p){
+        return edit_distance(p.first, s) == x;
+    });
+    auto ans = max_element(suggestions.begin(), suggestions.end(), [&](const std::pair<std::string, unsigned long int>&p1, const std::pair<std::string, unsigned long int>&p2){
+        return p1.second < p2.second;
+    });
+    if(ans != suggestions.end())
+        return ans -> first;
+    else
+        return "";
+}
+
+std::string spellCheck(std::string s){
+    std::string ans;
+    if(WORDS.find(s) != WORDS.end()){
+        return s;
+    }
+    if((ans = distance(s, 1)) != "" || (ans = distance(s, 2)) != ""){
+        return ans;
+    }
+    return "";
+}
+
+void init_Words(){
+    std::ifstream ifs("Big.txt");
+    std::regex pat (R"((\w)+)");
+    for (std::string line; getline(ifs,line); ) {
+        // std::cout << line << '\n';// read into line buffer
+        std::smatch matches; //matched strings go here
+        if (regex_search(line ,matches,pat)) {
+            for(auto match : matches){
+                if(WORDS.find(match) == WORDS.end())
+                    WORDS[match] = 1;
+                else
+                    WORDS[match] = WORDS[match] ++;
+            }
+        }
+    }
+}
+int main(){
+    // std::cout << spellCheck("")
+    init_Words();
+    // for(auto itr = WORDS.begin(); itr != WORDS.end(); itr++){
+    // 	std::cout << (itr -> first) << std::endl;
+    // }
+    std::cout << spellCheck("ues")<< std::endl;
+}
