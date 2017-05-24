@@ -156,6 +156,30 @@ template <typename T> class LinkList{
         }
         head = prev;
     }
+
+    void reverse(int k){
+        head = reverse(head, k);
+    }
+
+    Node<T>* reverse(Node<T>* head, int k){
+        if(head == nullptr || head -> next == nullptr)
+            return head;
+        auto curr = head;
+        Node<T>* prev = nullptr;
+        Node<T>* ahead = nullptr;
+        int n = 0;
+        while(curr != nullptr && n < k){
+            ahead = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr= ahead;
+            n++;
+        }
+        if(ahead != nullptr)
+            head -> next = reverse (ahead, k);
+
+        return prev;
+    }
     
     void operator+= (LinkList<T> &ll){
         if(ll.head == nullptr){
@@ -210,5 +234,8 @@ int main() {
     auto found = ll.end();
     if(itr != found)
         std::cout << *itr;
+    std::cout << std::endl;
+    ll.reverse(3);
+    ll.traverse();
     return 0;
 }
