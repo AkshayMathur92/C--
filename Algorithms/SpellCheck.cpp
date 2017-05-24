@@ -4,8 +4,20 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
+#include <algorithm> 
+#include <cctype>
+#include <functional>
 
 std::map<std::string, unsigned long int> WORDS;
+
+std::string toLower(std::string data){
+	std::transform(data.begin(), data.end(), data.begin(), [](char in){
+		if(in<='Z' && in>='A')
+    		return char(in-('Z'-'z'));
+  		return char(in);
+	});
+	return data;
+}
 
 int edit_distance(std::string s1, std::string s2){
     std::vector <std::vector<int> > v(s1.length() + 1, std::vector<int>(s2.length() + 1));
@@ -39,6 +51,7 @@ std::string distance(std::string &s, int x){
 }
 
 std::string spellCheck(std::string s){
+	s = toLower(s);
     std::string ans;
     if(WORDS.find(s) != WORDS.end()){
         return s;
@@ -56,20 +69,25 @@ void init_Words(){
         // std::cout << line << '\n';// read into line buffer
         std::smatch matches; //matched strings go here
         if (regex_search(line ,matches,pat)) {
-            for(auto match : matches){
-                if(WORDS.find(match) == WORDS.end())
-                    WORDS[match] = 1;
+            for(auto &match : matches){
+            	auto match_str = toLower(std::string(match));
+                if(WORDS.find(match_str) == WORDS.end())
+                    WORDS[match_str] = 1;
                 else
-                    WORDS[match] = WORDS[match] ++;
+                    WORDS[match_str] = WORDS[match_str] + 1;
             }
         }
     }
 }
 int main(){
-    // std::cout << spellCheck("")
+    std::cout << spellCheck("") << std::endl;
     init_Words();
     // for(auto itr = WORDS.begin(); itr != WORDS.end(); itr++){
-    // 	std::cout << (itr -> first) << std::endl;
+    // 	std::cout << (itr -> first) << " " << itr -> second << std::endl;
     // }
     std::cout << spellCheck("ues")<< std::endl;
+    std::cout << spellCheck("wrok")<< std::endl;
+    std::cout << spellCheck("somthing")<< std::endl;
+    std::cout << spellCheck("thenk")<< std::endl;
+    std::cout << spellCheck("measure")<< std::endl;
 }
