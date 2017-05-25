@@ -4,19 +4,19 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
-#include <algorithm> 
+#include <algorithm>
 #include <cctype>
 #include <functional>
 
 std::map<std::string, unsigned long int> WORDS;
 
 std::string toLower(std::string data){
-	std::transform(data.begin(), data.end(), data.begin(), [](char in){
-		if(in<='Z' && in>='A')
-    		return char(in-('Z'-'z'));
-  		return char(in);
-	});
-	return data;
+    std::transform(data.begin(), data.end(), data.begin(), [](char in){
+        if(in<='Z' && in>='A')
+            return char(in-('Z'-'z'));
+        return char(in);
+    });
+    return data;
 }
 
 int edit_distance(std::string s1, std::string s2){
@@ -41,6 +41,20 @@ std::string distance(std::string &s, int x){
     copy_if(WORDS.begin(), WORDS.end(), back_inserter(suggestions), [&](const std::pair<std::string, unsigned long int> &p){
         return edit_distance(p.first, s) == x;
     });
+    auto same_length  = find_if(suggestions.begin(), suggestions.end(), [&](const std::pair<std::string, unsigned long int>&p){
+        return (p.first.length() == s.length());});
+    if(same_length != suggestions.end()){
+        suggestions.erase(remove_if(suggestions.begin(), suggestions.end(), [&](const std::pair<std::string, unsigned long int>&p){
+            return (p.first.length() != s.length());
+        }),suggestions.end());
+    }
+    auto start_with  = find_if(suggestions.begin(), suggestions.end(), [&](const std::pair<std::string, unsigned long int>&p){
+        return (p.first[0] == s[0]);});
+    if(start_with != suggestions.end()){
+        suggestions.erase(remove_if(suggestions.begin(), suggestions.end(), [&](const std::pair<std::string, unsigned long int>&p){
+            return (p.first[0] != s[0] );
+        }),suggestions.end());
+    }
     auto ans = max_element(suggestions.begin(), suggestions.end(), [&](const std::pair<std::string, unsigned long int>&p1, const std::pair<std::string, unsigned long int>&p2){
         return p1.second < p2.second;
     });
@@ -51,7 +65,7 @@ std::string distance(std::string &s, int x){
 }
 
 std::string spellCheck(std::string s){
-	s = toLower(s);
+    s = toLower(s);
     std::string ans;
     if(WORDS.find(s) != WORDS.end()){
         return s;
@@ -70,7 +84,7 @@ void init_Words(){
         std::smatch matches; //matched strings go here
         if (regex_search(line ,matches,pat)) {
             for(auto &match : matches){
-            	auto match_str = toLower(std::string(match));
+                auto match_str = toLower(std::string(match));
                 if(WORDS.find(match_str) == WORDS.end())
                     WORDS[match_str] = 1;
                 else
@@ -80,14 +94,16 @@ void init_Words(){
     }
 }
 int main(){
-    std::cout << spellCheck("") << std::endl;
     init_Words();
     // for(auto itr = WORDS.begin(); itr != WORDS.end(); itr++){
-    // 	std::cout << (itr -> first) << " " << itr -> second << std::endl;
+    //  std::cout << (itr -> first) << " " << itr -> second << std::endl;
     // }
-    std::cout << spellCheck("ues")<< std::endl;
     std::cout << spellCheck("wrok")<< std::endl;
+    std::cout << spellCheck("ues")<< std::endl;
     std::cout << spellCheck("somthing")<< std::endl;
     std::cout << spellCheck("thenk")<< std::endl;
     std::cout << spellCheck("measure")<< std::endl;
+    std::cout << spellCheck("hre")<< std::endl;
+    std::cout << spellCheck("sopa")<< std::endl;
+
 }
