@@ -10,8 +10,8 @@ int floor(const vector<int> &data, const int &item){
 	
 	int low = 0;
 	int high = data.size() - 1;
+	int mid = low + (high - low) / 2;
 	while(high - low > 1){
-		int mid = low + (high - low) / 2;
 		if(data[mid] <= item)
 			low = mid;
 		else
@@ -27,8 +27,8 @@ int ceil(const vector<int> &data, const int &item){
 	
 	int low = 0;
 	int high = data.size() - 1;
+	int mid = low + (high - low) / 2;
 	while(high - low > 1){
-		int mid = low + (high - low) / 2;
 		if(data[mid] <= item)
 			low = mid;
 		else
