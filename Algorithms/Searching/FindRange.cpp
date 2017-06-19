@@ -4,7 +4,7 @@
 #include <utility>
 using namespace std;
 
-int getRight(const vector<int> &data, int &item){
+int upper_bound(const vector<int> &data, int &item){
 	int low = 0;
 	int high = data.size() - 1;
 
@@ -19,7 +19,7 @@ int getRight(const vector<int> &data, int &item){
 	return (data[low + 1] == item)? low + 1 : low;
 }
 
-int getLeft(const vector<int> &data, int &item){
+int lower_bound(const vector<int> &data, int &item){
 	int low = 0;
 	int high = data.size() - 1;
 
@@ -35,9 +35,9 @@ int getLeft(const vector<int> &data, int &item){
 }
 
 pair<int,int> getRange(const vector<int> &data, int item){
-	auto right = getRight(data, item);
-	auto left = getLeft(data, item);
-	return std::move(make_pair(left,right));
+	auto upper = upper_bound(data, item);
+	auto lower = lower_bound(data, item);
+	return std::move(make_pair(lower,upper));
 }
 
 int main(){
