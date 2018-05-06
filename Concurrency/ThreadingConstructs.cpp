@@ -29,22 +29,21 @@ void square_with_atomic(int i, atomic<int> &accum){
 //    cout << i << endl;
     accum += i * i;
 }
-void square_with_mutex(int i, int& accum){
-    mutex accm_mutex;
+void square_with_mutex(int i, int& accum, mutex &accm_mutex){
     this_thread::sleep_for(chrono::milliseconds(SLEEPTIME));
-    accm_mutex.lock();
+    lock_guard<mutex> lk(accm_mutex);
 //    cout << " Running on " << this_thread::get_id() << "this thread ." << endl;
 //    cout.flush();
 //    cout << i << endl;
     accum += i * i;
-    accm_mutex.unlock();
 }
 
 int calculate_with_mutex(){
+    mutex acc_mutex;
     vector<thread> thread_pool ;
     int accum = 0;
     for (int i = 1; i <= 20; i++) {
-        thread_pool.push_back(thread(&square_with_mutex, i, ref(accum)));
+        thread_pool.push_back(thread(&square_with_mutex, i, ref(accum), ref(acc_mutex)));
     }
     for (auto& th : thread_pool) {
         th.join();
