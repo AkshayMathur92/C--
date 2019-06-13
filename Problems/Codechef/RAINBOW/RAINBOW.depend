@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1557052763 source:d:\source\repos\c--\problems\codechef\rainbow\main.cpp
+	<iostream>
+	<vector>
+	<array>
+

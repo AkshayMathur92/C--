@@ -17,6 +17,17 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# Windows excutables
+*.exe 
+
+# C++ temp files
+*.o
+*.asm
+
+# c++ debug folders
+Debug/
+.vs/
+
 # =========================
 # Operating System Files
 # =========================
