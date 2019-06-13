@@ -7,6 +7,7 @@
 #include "IncrementArbitraryInteger.h"
 #include "MultipleArbitraryInteger.h"
 #include "AdvancingThroughAnArray.h"
+#include "DeleteDuplicatesFromSortedArray.h"
 
 int main()
 {
@@ -15,6 +16,7 @@ int main()
 	problems.emplace_back(std::unique_ptr<Problem>(new IncrementArbitraryInteger()));
 	problems.emplace_back(std::unique_ptr<Problem>(new MultiplyArbitraryInteger()));
 	problems.emplace_back(std::unique_ptr<Problem>(new AdvancingThroughAnArray()));
+	problems.emplace_back(std::unique_ptr<Problem>(new DeleteDuplicatesFromSortedArray()));
 	for (auto &problem : problems) {
 		problem.get()->runDemo();
 	}
