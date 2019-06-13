@@ -5,10 +5,6 @@
 #include <iostream>
 class MultiplyArbitraryInteger : public Problem {
 	// Inherited via Problem
-	virtual std::string getProblemStatement() override;
-	virtual std::string getComplexityStatement() override;
-	virtual std::string getLearningStatement() override;
-	virtual std::string getProblemSolvingStatement() override;
 	virtual void demo() override;
 private:
 	int get_digit_with_offset(const std::vector<int> &arr, const int &offset, const int &index);

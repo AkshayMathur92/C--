@@ -13,10 +13,6 @@ public:
 	~DutchNationalFlagPartioning();
 
 	// Inherited via Problem
-	std::string getProblemStatement() override;
-	std::string getComplexityStatement() override;
-	std::string getLearningStatement() override;
-	std::string getProblemSolvingStatement() override;
 	void demo() override;
 };
 

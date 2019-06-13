@@ -1,25 +1,5 @@
 #include "IncrementArbitraryInteger.h"
 
-std::string IncrementArbitraryInteger::getProblemStatement()
-{
-	return "Write a program that takes an array of digits encoding a decimal number D and updates the array to represent the number D+1.";
-}
-
-std::string IncrementArbitraryInteger::getComplexityStatement()
-{
-	return std::string();
-}
-
-std::string IncrementArbitraryInteger::getLearningStatement()
-{
-	return std::string();
-}
-
-std::string IncrementArbitraryInteger::getProblemSolvingStatement()
-{
-	return std::string();
-}
-
 void IncrementArbitraryInteger::demo()
 {
 	std::vector<int> given_number = { 1,2,9 };

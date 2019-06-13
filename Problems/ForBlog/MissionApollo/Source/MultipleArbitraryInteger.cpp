@@ -1,25 +1,5 @@
 #include "MultipleArbitraryInteger.h"
 
-std::string MultiplyArbitraryInteger::getProblemStatement()
-{
-	return std::string();
-}
-
-std::string MultiplyArbitraryInteger::getComplexityStatement()
-{
-	return std::string();
-}
-
-std::string MultiplyArbitraryInteger::getLearningStatement()
-{
-	return std::string();
-}
-
-std::string MultiplyArbitraryInteger::getProblemSolvingStatement()
-{
-	return std::string();
-}
-
 void MultiplyArbitraryInteger::demo()
 {
 	auto vec = multiply({ 1,2,3 }, { 1,1 });
