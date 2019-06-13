@@ -2,10 +2,10 @@
 #include "Problem.h"
 #include <vector>
 #include <algorithm>
-#include <iostream>
 class MultiplyArbitraryInteger : public Problem {
 	// Inherited via Problem
 	virtual void demo() override;
+	virtual std::string demoName() override;
 private:
 	int get_digit_with_offset(const std::vector<int> &arr, const int &offset, const int &index);
 

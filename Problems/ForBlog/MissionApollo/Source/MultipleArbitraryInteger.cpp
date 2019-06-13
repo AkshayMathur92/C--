@@ -24,6 +24,12 @@ void MultiplyArbitraryInteger::demo()
 	std::cout << std::endl;
 }
 
+std::string MultiplyArbitraryInteger::demoName()
+{
+	return R"(MultiplyArbitraryInteger
+--------------------------------)"s;
+}
+
 int MultiplyArbitraryInteger::get_digit_with_offset(const std::vector<int> &arr, const int &offset, const int &index) {
 	//because we know the array here will be already reversed. 
 	int rev_index = arr.size() - index - 1;
@@ -82,4 +88,3 @@ std::vector<int> MultiplyArbitraryInteger::multiply(const std::vector<int>& b1, 
 	}
 	return add_vectors_with_offsets(individual_sum);
 }
-

@@ -1,6 +1,5 @@
 #pragma once
 #include "Problem.h"
-#include <iostream>
 #include <vector>
 #include <algorithm>
 class IncrementArbitraryInteger : public Problem {
@@ -8,4 +7,7 @@ class IncrementArbitraryInteger : public Problem {
 	virtual void demo() override;
 private:
 	void increment_by_1(std::vector<int> *pVecNumber);
+
+	// Inherited via Problem
+	virtual std::string demoName() override;
 };

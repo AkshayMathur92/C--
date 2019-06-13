@@ -25,6 +25,12 @@ void DutchNationalFlagPartioning::demo()
 	cout << endl;
 }
 
+std::string DutchNationalFlagPartioning::demoName()
+{
+	return R"(DutchNaitonalFlagPartioning
+------------------------------------)"s;
+}
+
 
 DutchNationalFlagPartioning::DutchNationalFlagPartioning()
 {

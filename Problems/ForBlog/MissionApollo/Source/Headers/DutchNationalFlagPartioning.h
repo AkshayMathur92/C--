@@ -1,7 +1,6 @@
 #pragma once
 #include "Problem.h"
 #include <vector>
-#include <iostream>
 using namespace std;
 
 class DutchNationalFlagPartioning :
@@ -14,5 +13,7 @@ public:
 
 	// Inherited via Problem
 	void demo() override;
+	virtual std::string demoName() override;
+
 };
 

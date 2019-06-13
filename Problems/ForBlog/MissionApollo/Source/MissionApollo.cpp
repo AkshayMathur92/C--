@@ -6,6 +6,7 @@
 #include "DutchNationalFlagPartioning.h"
 #include "IncrementArbitraryInteger.h"
 #include "MultipleArbitraryInteger.h"
+#include "AdvancingThroughAnArray.h"
 
 int main()
 {
@@ -13,6 +14,7 @@ int main()
 	problems.emplace_back(std::unique_ptr<Problem>(new DutchNationalFlagPartioning()));
 	problems.emplace_back(std::unique_ptr<Problem>(new IncrementArbitraryInteger()));
 	problems.emplace_back(std::unique_ptr<Problem>(new MultiplyArbitraryInteger()));
+	problems.emplace_back(std::unique_ptr<Problem>(new AdvancingThroughAnArray()));
 	for (auto &problem : problems) {
 		problem.get()->runDemo();
 	}

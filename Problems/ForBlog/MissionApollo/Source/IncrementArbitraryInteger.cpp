@@ -41,3 +41,9 @@ void IncrementArbitraryInteger::increment_by_1(std::vector<int> *pVecNumber) {
 	vec_number.insert(vec_number.begin(), 1);
 }
 
+std::string IncrementArbitraryInteger::demoName()
+{
+	return R"(IncrementArbitraryInteger
+------------------------------------)"s;
+}
+
