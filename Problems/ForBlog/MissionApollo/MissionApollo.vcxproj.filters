@@ -33,7 +33,10 @@
     <ClCompile Include="Source\AdvancingThroughAnArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Headers\DeleteDuplicatesFromSortedArray.cpp">
+    <ClCompile Include="Source\DeleteDuplicatesFromSortedArray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Headers\BuyingStockOnce.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Headers\DeleteDuplicatesFromSortedArray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Headers\BuyingStockOnce.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
