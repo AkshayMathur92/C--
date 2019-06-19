@@ -166,7 +166,8 @@
     <ClCompile Include="Source\DutchNationalFlagPartioning.cpp" />
     <ClCompile Include="Source\AdvancingThroughAnArray.cpp" />
     <ClCompile Include="Source\DeleteDuplicatesFromSortedArray.cpp" />
-    <ClCompile Include="Source\Headers\BuyingStockOnce.cpp" />
+    <ClCompile Include="Source\BuyingStockOnce.cpp" />
+    <ClCompile Include="Source\BuyingStockTwice.cpp" />
     <ClCompile Include="Source\MultipleArbitraryInteger.cpp" />
     <ClCompile Include="Source\IncrementArbitraryInteger.cpp" />
     <ClCompile Include="Source\Problem.cpp" />
@@ -175,6 +176,7 @@
   <ItemGroup>
     <ClInclude Include="Source\Headers\AdvancingThroughAnArray.h" />
     <ClInclude Include="Source\Headers\BuyingStockOnce.h" />
+    <ClInclude Include="Source\Headers\BuyingStockTwice.h" />
     <ClInclude Include="Source\Headers\DeleteDuplicatesFromSortedArray.h" />
     <ClInclude Include="Source\Headers\DutchNationalFlagPartioning.h" />
     <ClInclude Include="Source\Headers\IncrementArbitraryInteger.h" />

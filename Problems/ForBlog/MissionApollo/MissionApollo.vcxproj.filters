@@ -36,7 +36,10 @@
     <ClCompile Include="Source\DeleteDuplicatesFromSortedArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Headers\BuyingStockOnce.cpp">
+    <ClCompile Include="Source\BuyingStockOnce.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\BuyingStockTwice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Headers\BuyingStockOnce.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Headers\BuyingStockTwice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
