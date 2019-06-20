@@ -168,6 +168,7 @@
     <ClCompile Include="Source\DeleteDuplicatesFromSortedArray.cpp" />
     <ClCompile Include="Source\BuyingStockOnce.cpp" />
     <ClCompile Include="Source\BuyingStockTwice.cpp" />
+    <ClCompile Include="Source\Sieve of Eratosthenes.cpp" />
     <ClCompile Include="Source\MultipleArbitraryInteger.cpp" />
     <ClCompile Include="Source\IncrementArbitraryInteger.cpp" />
     <ClCompile Include="Source\Problem.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Source\Headers\IncrementArbitraryInteger.h" />
     <ClInclude Include="Source\Headers\MultipleArbitraryInteger.h" />
     <ClInclude Include="Source\Headers\Problem.h" />
+    <ClInclude Include="Source\Headers\Sieve of Eratosthenes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
