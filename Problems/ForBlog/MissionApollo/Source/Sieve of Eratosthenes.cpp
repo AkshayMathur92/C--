@@ -12,24 +12,21 @@ std::string SieveOfEratosthenes::demoName()
 }
 
 void SieveOfEratosthenes::print_primes(unsigned int n) {
-	if (n < 2) {
-		std::cout << "1" << std::endl;
-		return;
-	}
-	std::cout << "1 " ;
-	std::vector<int> sieve (n + 1);
-	std::iota(sieve.begin(), sieve.end(), 0);
-	auto itr = sieve.begin() + 2;
-	while (itr != sieve.end()) {
-		while (itr != sieve.end() && *itr == -1) {
-			itr++;
+	std::vector<int> primes(n + 1);
+	std::iota(primes.begin(), primes.end(), 0);
+	for (auto itr = primes.begin() + 1; itr < primes.end(); itr++) {
+		if (*itr == 1)
+			continue;
+		auto stride = (itr - primes.begin());
+		auto multiple = itr;
+		while ((primes.end() - multiple) > stride) {
+			std::advance(multiple, stride);
+			*multiple = 1;
 		}
-		if (itr == sieve.end())
-			return;
-		std::cout << *itr << " ";
-		for (int i = 2; (*itr) * i <= n; i++) {
-			sieve[(*itr) * i] = -1;
-		}
-		itr++;
 	}
+	for (auto &i : primes) {
+		if(i >= 2)
+			std::cout << i << " ";
+	}
+	std::cout << std::endl;
 }
