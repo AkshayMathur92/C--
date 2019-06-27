@@ -45,6 +45,9 @@
     <ClCompile Include="Source\Sieve of Eratosthenes.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ApplyPermutation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Headers\DutchNationalFlagPartioning.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Headers\Sieve of Eratosthenes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Headers\ApplyPermutation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
