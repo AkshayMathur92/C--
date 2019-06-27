@@ -14,10 +14,8 @@ std::string BuyingStockOnce::demoName()
 
 int BuyingStockOnce::get_max_profit(const std::vector<int>& arr)
 {
-	if (arr.empty())
+	if (arr.empty()|| arr.size() < 2)
 		return 0;
-	if (arr.size() < 2)
-		return arr[0];
 	auto local_min = arr.begin();
 	auto itr = arr.begin() + 1;
 	int max_profit = 0;
