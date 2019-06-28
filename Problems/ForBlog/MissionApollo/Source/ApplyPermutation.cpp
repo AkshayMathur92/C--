@@ -32,13 +32,13 @@ void ApplyPermutation::apply(IntVector* parr, const IntVector& perm)
 	}
 	BoolVector processed(arr.size(), false);
 	for (int i = 0; i < arr.size(); i++) {
-		int next_pos = i;
+		int next_pos = perm[i];
+		int next_val = arr[i];
 		while (!processed[next_pos]) {
-			std::swap(arr[perm[next_pos]], arr[next_pos]);
-			processed[perm[next_pos]] = true;
+			std::swap(next_val, arr[next_pos]);
+			processed[next_pos] = true;
 			next_pos = perm[next_pos];
 		}
 	}
-	
 	return;
 }
