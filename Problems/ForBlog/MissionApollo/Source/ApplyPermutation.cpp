@@ -31,26 +31,14 @@ void ApplyPermutation::apply(IntVector* parr, const IntVector& perm)
 		return;
 	}
 	BoolVector processed(arr.size(), false);
-	int next_val = arr[0], next_pos = perm[0], next_cycle_at = 1;
-	while (next_pos < arr.size()) {
-		if (next_cycle_at < processed.size() && processed[next_cycle_at]) {
-			next_cycle_at = find_if(processed.begin() + next_cycle_at + 1, processed.end(), [](const bool &b) {return !b; }) - processed.begin();
-		}
-		int temp = arr[next_pos];
-		arr[next_pos] = next_val;
-		processed[next_pos] = true;
-		next_val = temp;
-		next_pos = perm[next_pos];
-		if (processed[next_pos]) {
-			if (next_cycle_at < arr.size()) {
-				next_val = arr[next_cycle_at];
-				next_pos = perm[next_cycle_at];
-				next_cycle_at++;
-			}
-			else {
-				break;
-			}
+	for (int i = 0; i < arr.size(); i++) {
+		int next_pos = i;
+		while (!processed[next_pos]) {
+			std::swap(arr[perm[next_pos]], arr[next_pos]);
+			processed[perm[next_pos]] = true;
+			next_pos = perm[next_pos];
 		}
 	}
+	
 	return;
 }
