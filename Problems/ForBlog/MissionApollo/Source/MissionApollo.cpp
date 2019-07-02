@@ -12,6 +12,7 @@
 #include "BuyingStockTwice.h"
 #include "Sieve of Eratosthenes.h"
 #include "ApplyPermutation.h"
+#include "NextPermutation.h"
 
 int main()
 {
@@ -25,6 +26,7 @@ int main()
 	problems.emplace_back(std::unique_ptr<Problem>(new BuyingStockTwice()));
 	problems.emplace_back(std::unique_ptr<Problem>(new SieveOfEratosthenes()));
 	problems.emplace_back(std::unique_ptr<Problem>(new ApplyPermutation()));
+	problems.emplace_back(std::unique_ptr<Problem>(new NextPermutation()));
 	for (auto &problem : problems) {
 		problem.get()->runDemo();
 	}
