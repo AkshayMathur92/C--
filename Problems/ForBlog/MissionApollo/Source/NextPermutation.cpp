@@ -22,15 +22,19 @@ std::string NextPermutation::demoName()
 IntVector NextPermutation::next_perm(const IntVector &init){
 	IntVector new_perm = IntVector(init);
 	auto desc_itr = new_perm.rbegin();
-	while (desc_itr + 1 != new_perm.rend() && *desc_itr < *(desc_itr + 1)) {
+	while (desc_itr + 1 != new_perm.rend() && *desc_itr <= *(desc_itr + 1)) {
 		desc_itr++;
 	}
 	if (desc_itr + 1 == new_perm.rend()) {
 		return IntVector();
 	}
 	auto eligible = (desc_itr + 2).base();
-	auto itr = std::lower_bound(new_perm.rbegin(), desc_itr + 1, *(desc_itr + 1));
-	std::iter_swap(eligible, itr);
-	std::sort(eligible + 1, new_perm.end());
+	for (auto itr = new_perm.end() - 1; itr > eligible; itr--) {
+		if (*itr > *eligible) {
+			std::iter_swap(eligible, itr);
+			break;
+		}
+	}
+	std::reverse(eligible + 1, new_perm.end());
 	return new_perm;
 }
