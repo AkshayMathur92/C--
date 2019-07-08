@@ -169,6 +169,7 @@
     <ClCompile Include="Source\BuyingStockOnce.cpp" />
     <ClCompile Include="Source\BuyingStockTwice.cpp" />
     <ClCompile Include="Source\ApplyPermutation.cpp" />
+    <ClCompile Include="Source\OfflineSampling.cpp" />
     <ClCompile Include="Source\NextPermutation.cpp" />
     <ClCompile Include="Source\Sieve of Eratosthenes.cpp" />
     <ClCompile Include="Source\MultipleArbitraryInteger.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="Source\Headers\IncrementArbitraryInteger.h" />
     <ClInclude Include="Source\Headers\MultipleArbitraryInteger.h" />
     <ClInclude Include="Source\Headers\NextPermutation.h" />
+    <ClInclude Include="Source\Headers\OfflineSampling.h" />
     <ClInclude Include="Source\Headers\Problem.h" />
     <ClInclude Include="Source\Headers\Sieve of Eratosthenes.h" />
   </ItemGroup>

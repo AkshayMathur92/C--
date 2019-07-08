@@ -13,6 +13,7 @@
 #include "Sieve of Eratosthenes.h"
 #include "ApplyPermutation.h"
 #include "NextPermutation.h"
+#include "OfflineSampling.h"
 
 int main()
 {
@@ -27,6 +28,7 @@ int main()
 	problems.emplace_back(std::unique_ptr<Problem>(new SieveOfEratosthenes()));
 	problems.emplace_back(std::unique_ptr<Problem>(new ApplyPermutation()));
 	problems.emplace_back(std::unique_ptr<Problem>(new NextPermutation()));
+	problems.emplace_back(std::unique_ptr<Problem>(new OfflineSampling()));
 	for (auto &problem : problems) {
 		problem.get()->runDemo();
 	}
