@@ -169,6 +169,7 @@
     <ClCompile Include="Source\BuyingStockOnce.cpp" />
     <ClCompile Include="Source\BuyingStockTwice.cpp" />
     <ClCompile Include="Source\ApplyPermutation.cpp" />
+    <ClCompile Include="Source\ComputePermutation.cpp" />
     <ClCompile Include="Source\OfflineSampling.cpp" />
     <ClCompile Include="Source\NextPermutation.cpp" />
     <ClCompile Include="Source\Sieve of Eratosthenes.cpp" />
@@ -184,6 +185,7 @@
     <ClInclude Include="Source\Headers\BuyingStockTwice.h" />
     <ClInclude Include="Source\Headers\DeleteDuplicatesFromSortedArray.h" />
     <ClInclude Include="Source\Headers\DutchNationalFlagPartioning.h" />
+    <ClInclude Include="Source\Headers\ComputePermutation.h" />
     <ClInclude Include="Source\Headers\IncrementArbitraryInteger.h" />
     <ClInclude Include="Source\Headers\MultipleArbitraryInteger.h" />
     <ClInclude Include="Source\Headers\NextPermutation.h" />

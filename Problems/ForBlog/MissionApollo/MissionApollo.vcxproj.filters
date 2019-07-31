@@ -54,6 +54,9 @@
     <ClCompile Include="Source\OfflineSampling.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ComputePermutation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Headers\DutchNationalFlagPartioning.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Headers\OfflineSampling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Headers\ComputePermutation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
