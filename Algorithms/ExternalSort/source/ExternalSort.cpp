@@ -5,7 +5,7 @@
 #include <queue>
 #include <vector>
 #include <numeric>
-
+#include <chrono>
 
 using namespace std::literals::string_literals;
 using fstream = std::fstream;
@@ -47,7 +47,7 @@ int generate_input_file() {
 	std::cout << "File Created!\n";
 	return 0;
 }
-void sort_external_file() {
+void sort_external_file_with_temp() {
 	
 	fstream fio;
 	fio.open(InputFile, std::ios::in);
@@ -137,11 +137,52 @@ void sort_external_file() {
 	}
 	fio.close();
 }
+
+void sort_external_improved() {
+	unsigned int range = UINT16_MAX;
+	const unsigned int CHUNK_SIZE = 1000;
+	std::vector<int> elements_in_range;
+	uint16_t curr_begin = 0;
+	uint16_t curr_end = curr_begin + CHUNK_SIZE;
+	ofstream fo_output;
+	fo_output.open("improvedoutput.txt"s, std::ios::out | std::ios::trunc);
+	ifstream fio;
+	fio.open(InputFile, std::ios::in);
+	if (!fio) {
+		std::cout << "Failed to Open File" << std::endl;
+		return;
+	}
+	while (curr_end > curr_begin) {
+		fio.clear();
+		fio.seekg(std::ios::beg);
+		int temp;
+		while (fio >> temp) {
+			if (temp >= curr_begin && temp < curr_end) {
+				elements_in_range.push_back(temp);
+			}
+		}
+		std::sort(elements_in_range.rbegin(), elements_in_range.rend());
+		while (!elements_in_range.empty()) {
+			fo_output << elements_in_range.back() << std::endl;
+			elements_in_range.pop_back();
+		}
+		curr_begin = curr_end;
+		curr_end = curr_begin + CHUNK_SIZE;
+	}
+	fo_output.close();
+	fio.close();
+}
 int main()
 {
 	//generate_input_file();
-	sort_external_file();
-    
+	/*auto start = std::chrono::high_resolution_clock::now();
+	sort_external_file_with_temp();
+	auto stop = std::chrono::high_resolution_clock::now();
+	std::cout << std::chrono::duration_cast<std::chrono::seconds>(stop - start).count() << std::endl;*/
+	auto start = std::chrono::high_resolution_clock::now();
+	sort_external_improved();
+	auto stop = std::chrono::high_resolution_clock::now();
+	std::cout << std::chrono::duration_cast<std::chrono::seconds>(stop - start).count() << std::endl;
 }
 
 
