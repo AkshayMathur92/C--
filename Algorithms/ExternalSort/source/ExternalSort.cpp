@@ -172,6 +172,31 @@ void sort_external_improved() {
 	fo_output.close();
 	fio.close();
 }
+void sort_external_improved_2() {
+	unsigned int range = UINT16_MAX;
+	
+	ifstream fio;
+	fio.open(InputFile, std::ios::in);
+	if (!fio) {
+		std::cout << "Failed to Open File" << std::endl;
+		return;
+	}
+	std::vector<bool> isPresent(UINT16_MAX,false);
+	while (!fio.eof()) {
+		unsigned long temp; 
+		fio >> temp;
+		isPresent[temp] = true;
+	}
+	fio.close();
+	ofstream fo_output;
+	fo_output.open("improvedoutput_2.txt"s, std::ios::out | std::ios::trunc);
+	for (unsigned long i = 0; i < UINT16_MAX; i++) {
+		if (isPresent[i]) {
+			fo_output << i << std::endl;
+		}
+	}
+	fo_output.close();
+}
 int main()
 {
 	//generate_input_file();
@@ -179,8 +204,12 @@ int main()
 	sort_external_file_with_temp();
 	auto stop = std::chrono::high_resolution_clock::now();
 	std::cout << std::chrono::duration_cast<std::chrono::seconds>(stop - start).count() << std::endl;*/
-	auto start = std::chrono::high_resolution_clock::now();
+	/*auto start = std::chrono::high_resolution_clock::now();
 	sort_external_improved();
+	auto stop = std::chrono::high_resolution_clock::now();
+	std::cout << std::chrono::duration_cast<std::chrono::seconds>(stop - start).count() << std::endl;*/
+	auto start = std::chrono::high_resolution_clock::now();
+	sort_external_improved_2();
 	auto stop = std::chrono::high_resolution_clock::now();
 	std::cout << std::chrono::duration_cast<std::chrono::seconds>(stop - start).count() << std::endl;
 }
